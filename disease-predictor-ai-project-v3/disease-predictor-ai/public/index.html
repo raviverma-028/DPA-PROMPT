@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Upload a medical lab report and get an AI-based estimate of possible conditions with healthy-living tips.">
+  <title>Disease Predictor AI | B.Tech Final Year Project</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="nav">
+  <a class="brand" href="/" aria-label="Disease Predictor AI, home"><span class="dot" aria-hidden="true"></span>disease<b>.predictor</b>/ai</a>
+  <nav class="links" aria-label="Primary">
+    <a href="#about">Problem</a><a href="#analyze">Analyze</a><a href="#how">How it works</a><a href="#stack">Tech stack</a>
+  </nav>
+  <div class="auth" id="auth"></div>
+</header>
+
+<main id="main">
+  <section class="hero" aria-labelledby="title">
+    <p class="tag">&gt; final_year_project --stream=healthcare-ai</p>
+    <h1 id="title">Upload a medical report.<br><span class="grad">Get an AI health insight.</span></h1>
+    <p class="sub">Disease Predictor AI reads lab reports (PNG, JPG, PDF), flags abnormal values, predicts possible conditions and suggests healthy-living tips.</p>
+    <a class="btn" href="#analyze">Try it now</a>
+  </section>
+
+  <div class="wrap">
+    <section id="about" class="panel" aria-labelledby="about-h">
+      <h2 id="about-h"><span aria-hidden="true">01</span> Problem statement</h2>
+      <p>Lab reports are full of numbers and medical terms that most patients cannot interpret, so early warning signs are missed and people panic or ignore results. This project turns a report image or PDF into plain-language findings, <strong>possible</strong> conditions with a confidence level, and condition-specific lifestyle and diet tips, in Hinglish, Hindi or English.</p>
+      <p><strong>Scope:</strong> awareness and education only. It does not diagnose, and every result tells the user when to consult a doctor.</p>
+    </section>
+
+    <section id="analyze" class="panel" aria-labelledby="analyze-h">
+      <h2 id="analyze-h"><span aria-hidden="true">02</span> Analyze report</h2>
+      <p class="quota" id="quota"></p>
+      <div class="dropwrap">
+        <input type="file" id="file" class="sr-only" accept=".png,.jpg,.jpeg,.pdf,image/png,image/jpeg,application/pdf" multiple aria-describedby="file-help">
+        <label class="drop" id="drop" for="file">
+          <span class="ico" aria-hidden="true">&#8679;</span>
+          <b>Drop report here or press to choose files</b>
+          <small id="file-help">PNG, JPG or PDF &middot; up to 3 files &middot; 10 MB each</small>
+        </label>
+      </div>
+      <ul class="files" id="files" aria-label="Selected files"></ul>
+      <div class="controls">
+        <label for="lang" class="sr-only">Result language</label>
+        <select id="lang">
+          <option value="hinglish">Hinglish</option>
+          <option value="hindi">हिन्दी (Hindi)</option>
+          <option value="english">English</option>
+        </select>
+        <button class="btn" id="go" disabled>Run analysis</button>
+      </div>
+      <div class="log" id="status" role="status" aria-live="polite"></div>
+      <div class="log error" id="error" role="alert"></div>
+    </section>
+
+    <section id="result" tabindex="-1" aria-labelledby="result-title" hidden></section>
+
+    <section id="how" class="panel" aria-labelledby="how-h">
+      <h2 id="how-h"><span aria-hidden="true">03</span> How it works</h2>
+      <ol class="steps">
+        <li><b>Upload</b>The browser shrinks large images, then sends the file over HTTPS. Files are checked by real file signature and never stored.</li>
+        <li><b>Analyze</b>The Express server sends the file to a multimodal AI model with a structured prompt.</li>
+        <li><b>Validate</b>The JSON answer is strictly validated and bounded before it reaches the browser.</li>
+        <li><b>Render</b>Findings, predictions, tips and diet are shown as an accessible report you can print or export.</li>
+      </ol>
+    </section>
+
+    <section id="stack" class="panel" aria-labelledby="stack-h">
+      <h2 id="stack-h"><span aria-hidden="true">04</span> Tech stack</h2>
+      <ul class="chips" aria-label="Technologies used">
+        <li>HTML5</li><li>CSS3</li><li>JavaScript (ES modules)</li><li>Node.js</li><li>Express</li><li>Helmet CSP</li><li>Google OAuth</li><li>JWT</li><li>node:test</li><li>ESLint</li>
+      </ul>
+    </section>
+
+    <p class="disclaimer" role="note"><strong>Disclaimer:</strong> Educational project. Output is an AI estimate, not a medical diagnosis. Always consult a qualified doctor.</p>
+  </div>
+</main>
+
+<footer>Built by &lt;Your Name&gt; &middot; B.Tech CSE (4th Year) &middot; &lt;College Name&gt; &middot; Guide: &lt;Guide Name&gt;</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+  <div class="mbox">
+    <h2 id="modal-title">Free limit reached</h2>
+    <p>Your free tries are over. Please sign in with your Google account to continue.</p>
+    <div id="gbtn-modal" class="gwrap"></div>
+    <button class="btn ghost" id="mclose" type="button">Close</button>
+  </div>
+</div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
